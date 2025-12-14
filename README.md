@@ -1,22 +1,26 @@
-# 🌿 Eco-Companion AI
+# Eco-Companion 🌿
 
 Eco-Companion is an AI-powered web application that promotes sustainable living through real-time waste detection, carbon footprint tracking, eco challenges, badges, and a live leaderboard.
 
 ## 🚀 Features
-- 📷 AI-based waste detection using camera
+- 📷 AI-powered waste detection using TensorFlow.js
 - 🌍 Carbon footprint tracking
-- 🏅 Eco badges & daily challenges
+- 🏆 Gamified eco challenges & badges
 - 📊 Live leaderboard
-- 🔐 Firebase authentication & database
+- 🔥 Streaks & eco impact summary
 
 ## 🛠 Tech Stack
 - HTML, CSS, JavaScript
 - TensorFlow.js (COCO-SSD)
 - Firebase (Auth & Firestore)
 - Tailwind CSS
+- Netlify (Deployment)
 
 ## 🌐 Live Demo
-👉 https://spiffy-sunburst-cde1cd.netlify.app/
+https://spiffy-sunburst-cde1cd.netlify.app/
 
-## 🏆 Hackathon Project
-Built as part of a hackathon to encourage eco-friendly habits using AI and gamification.
+## 📦 Installation
+Open `index.html` using Live Server or any modern browser.
+
+## 👤 Author
+Pavan Kumar
