@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Companion 🌿 Hackathon Winner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+ 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-emerald-500 via-green-500 to-blue-500 min-h-screen">
+    <!-- Username Modal -->
+<div id="usernameModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+  <div class="bg-white rounded-2xl p-8 w-80 text-center shadow-2xl">
+    <h2 class="text-2xl font-bold mb-4">🌱 Welcome!</h2>
+    <p class="text-gray-600 mb-4">Enter your Eco Name</p>
+    <input
+      id="usernameInput"
+      type="text"
+      placeholder="EcoHero"
+      class="w-full border rounded-xl px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-green-400"
+    />
+    <button
+  id="saveUsernameBtn"
+  type="button"
+  class="w-full bg-green-500 text-white py-2 rounded-xl font-bold hover:bg-green-600"
+>
+  Continue
+</button>
+
+
+  </div>
+</div>
+
+    <div class="container mx-auto p-8 max-w-6xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-6xl font-black bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent mb-4">
+                🌿 Eco-Companion
+            </h1>
+            <p class="text-2xl text-white/90 font-semibold">AI Waste Scanner + Carbon Tracker + Live Leaderboard</p>
+            <!-- Profile Button -->
+  <div class="absolute top-4 right-4">
+    <button
+      id="profileBtn"
+      class="bg-white/20 text-white px-4 py-2 rounded-xl hover:bg-white/30 transition font-semibold"
+    >
+      👤 My Profile
+    </button>
+  </div>
+        </header>
+    
+        <div class="grid lg:grid-cols-2 gap-8 mb-12">
+            <!-- Carbon Dashboard -->
+            <div class="bg-white/20 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/30">
+                <h2 class="text-3xl font-bold text-white mb-8 flex items-center">
+                    <span class="w-12 h-12 bg-green-400 rounded-2xl flex items-center justify-center mr-4 text-xl">CO₂</span>
+                    Carbon Score
+                </h2>
+                <div class="grid grid-cols-2 gap-8 text-center">
+                    <div>
+                        <div class="text-5xl font-black text-green-400 mb-2" id="carbonScore">42g</div>
+                        <div class="text-white/80 text-lg">Daily Emissions</div>
+                    </div>
+                    <div>
+                        <div class="w-28 h-28 bg-gradient-to-r from-emerald-400 to-green-500 rounded-2xl flex items-center justify-center mx-auto shadow-2xl text-3xl font-bold text-white glow-green">
+                            <span id="streak">5</span>🔥
+                        </div>
+                        <div class="text-white/80 text-lg mt-4">Streak</div>
+                    </div>
+                </div>
+                <!-- Eco Badges -->
+                <div class="mt-6 text-center">
+                <h3 class="text-xl font-bold text-white mb-3">🏅 Eco Badges</h3>
+
+                <div class="flex justify-center gap-4">
+                    <div id="badgeBronze" class="opacity-30 text-3xl">🥉</div>
+                    <div id="badgeSilver" class="opacity-30 text-3xl">🥈</div>
+                    <div id="badgeGold" class="opacity-30 text-3xl">🥇</div>
+                </div>
+
+                <p id="badgeText" class="text-white/80 mt-3">
+                    Keep going to unlock badges!
+                </p>
+                </div>
+
+                <!-- CO₂ Impact Summary -->
+            <div class="bg-white/20 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-white/30 mb-8">
+            <h3 class="text-2xl font-bold text-white mb-4">🌍 Your Eco Impact</h3>
+
+            <div class="grid grid-cols-3 gap-4 text-center text-white">
+                <div>
+                <div id="co2Saved" class="text-3xl font-black text-green-400">0 g</div>
+                <div class="text-sm text-white/80">CO₂ Saved</div>
+                </div>
+
+                <div>
+                <div id="walkEquivalent" class="text-3xl font-black text-green-400">0 km</div>
+                <div class="text-sm text-white/80">Walking Equivalent</div>
+                </div>
+
+                <div>
+                <div id="treesSaved" class="text-3xl font-black text-green-400">0</div>
+                <div class="text-sm text-white/80">Trees Saved</div>
+                </div>
+            </div>
+            </div>
+
+                <!-- Daily Eco Challenge -->
+                <div class="bg-white/20 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-white/30 mb-8">
+                <h3 class="text-2xl font-bold text-white mb-2">🌱 Daily Eco Challenge</h3>
+
+                <p id="challengeText" class="text-white/90 text-lg mb-4">
+                    Loading today’s challenge...
+                </p>
+
+                <div id="challengeStatus" class="text-green-300 font-bold hidden">
+                    ✅ Challenge Completed!
+                </div>
+                </div>
+
+                <button id="scanBtn" class="w-full mt-8 bg-gradient-to-r from-emerald-500 to-green-600 text-white py-5 px-8 rounded-2xl text-xl font-bold hover:from-emerald-600 hover:to-green-700 transition-all duration-300 shadow-2xl transform hover:-translate-y-1">
+                    📱 Start AI Waste Scan
+                </button>
+            </div>
+
+            <!-- Scanner Section -->
+            <div id="scannerSection" class="bg-white/20 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/30 hidden">
+                <h3 class="text-3xl font-bold text-white mb-6">🔍 Live AI Detection</h3>
+                <div class="relative mb-6">
+                    <video id="video" class="w-full rounded-2xl shadow-2xl" autoplay playsinline muted></video>
+                    <div id="detectionOverlay" class="absolute inset-0 rounded-2xl pointer-events-none"></div>
+                </div>
+                <canvas id="canvas" class="hidden"></canvas>
+                <div id="detectionResult" class="text-center space-y-4">
+                    <div class="text-4xl animate-pulse" id="scanStatus">🔍 Scanning for waste...</div>
+                    <div id="wasteType" class="text-3xl font-black text-white bg-black/30 rounded-2xl py-4 px-8 mx-auto w-max hidden"></div>
+                    <div id="action" class="text-xl text-white/90 bg-green-500/20 rounded-xl py-4 px-8 border-2 border-green-400/50 hidden"></div>
+                    <div id="pointsEarned" class="text-2xl font-bold text-green-400 hidden animate-bounce">+15 points earned! 🎉</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Leaderboard -->
+        <div class="bg-white/20 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/30">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-bold text-white flex items-center">
+                    🏆 Live Leaderboard 
+                    <span class="ml-4 px-4 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full text-lg font-black text-gray-900">
+                        REAL-TIME
+                    </span>
+                </h2>
+                <div class="text-white/80 text-lg">Updated: <span id="lastUpdate">--:--</span></div>
+            </div>
+            <div id="leaderboard" class="space-y-3 max-h-96 overflow-y-auto">
+                <!-- Dynamic leaderboard -->
+            </div>
+        </div>
+    </div>
+    
+ <!-- Confetti Container -->
+<div id="confettiContainer" 
+class="pointer-events-none fixed inset-0 overflow-hidden z-50"></div>
+
+<!-- Profile Modal -->
+<div id="profileModal"
+     class="fixed inset-0 bg-black/60 flex items-center justify-center hidden z-50">
+
+  <div class="bg-white rounded-3xl p-8 w-96 text-center">
+    <h2 class="text-2xl font-black mb-4">👤 Eco Profile</h2>
+
+    <p class="text-lg font-bold" id="profileName"></p>
+    <p class="mt-2" id="profileBadge"></p>
+    <p class="mt-2">🔥 Streak: <span id="profileStreak"></span></p>
+    <p class="mt-2">🌍 CO₂ Saved: <span id="profileCO2"></span> g</p>
+
+    <button id="certificateBtn"
+  class="bg-green-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-600 transition">
+  📜 Download Eco Certificate
+</button>
+
+    <button id="closeProfile"
+      class="mt-6 bg-green-500 text-white px-6 py-2 rounded-xl">
+      Close
+    </button>
+  </div>
+</div>
+<!-- Certificate -->
+<div id="certificate" style="position: fixed; left:-9999px; top:0;">
+  <div id="certificateContent"
+    style="
+      width:800px;
+      height:600px;
+      padding:40px;
+      background:#ecfdf5;
+      border:10px solid #22c55e;
+      text-align:center;
+      font-family:Arial;
+    ">
+
+    <h1 style="font-size:40px;color:#166534;">🌿 Eco Certificate</h1>
+
+    <p style="font-size:20px;margin-top:30px;">
+      This certifies that
+    </p>
+
+    <h2 id="certName" style="font-size:36px;color:#14532d;margin:20px 0;"></h2>
+
+    <p style="font-size:20px;">
+      has actively reduced their carbon footprint and earned
+    </p>
+
+    <h3 id="certBadge" style="font-size:28px;margin:20px 0;"></h3>
+
+    <p style="font-size:18px;">
+      🌍 CO₂ Saved: <span id="certCO2"></span> g
+    </p>
+
+    <p style="margin-top:30px;">
+      📅 <span id="certDate"></span>
+    </p>
+
+    <p style="margin-top:20px;">
+  Certificate ID: <b id="certId"></b>
+    </p>
+
+    <img id="certQR" />
+
+
+    <p style="margin-top:40px;font-weight:bold;">
+      Eco-Companion Initiative
+    </p>
+  </div>
+</div>
+
+   
+ <!-- External libraries FIRST -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.16.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+
+<!-- Your app (module) LAST -->
+<script type="module" src="script.js"></script>
+
+    
+</body>
+</html>
